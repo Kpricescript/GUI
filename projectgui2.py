@@ -1,4 +1,5 @@
-from tkinter import *
+rom tkinter import *
+from PIL import Image,ImageTk
 from tkinter import messagebox
 import random
 
@@ -31,18 +32,17 @@ def generate_password():
 
 
 def add():
-    keys = ["website", "username", "password"]
+    keys = ["username", "password"]
 
-    if website_input.get() == "" or website_input.get() == "" or password_input.get() == "":
+    if password_input.get() == "":
         messagebox.showinfo(title="Listen Up", message="no empty fields allowed")
 
     else:
 
-        value_entry = [website_input.get(), username_input.get(), password_input.get()]
+        value_entry = [username_input.get(), password_input.get()]
         entry_dict = {key: value for (key, value) in zip(keys, value_entry)}
 
         if messagebox.askyesno(title="please Confirm", message=f"{entry_dict}\n it this okay?"):
-            website_input.delete(0, END)
             username_input.delete(0, END)
             password_input.delete(0, END)
 
@@ -53,6 +53,8 @@ def add():
 window = Tk()
 window.title("Password Manager")
 window.config(padx=20, pady=20)
+
+
 
 # the canvas
 canvas = Canvas(width=200, height=200)
@@ -66,10 +68,6 @@ username.grid(row=2, column=0)
 password = Label(text="Password: ", font=FONT)
 password.grid(row=3, column=0)
 
-# website_input box
-website_input = Entry(width=35)
-website_input.focus()
-website_input.grid(row=1, column=1, columnspan=2)
 
 # username_input box
 username_input = Entry(width=35)
